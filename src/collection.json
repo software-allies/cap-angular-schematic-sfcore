@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "cap-angular-schematic-sfcore": {
+      "description": "A blank schematic.",
+      "factory": "./cap-angular-schematic-sfcore/index#capAngularSchematicSfcore"
+    }
+  }
+}
