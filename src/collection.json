@@ -3,7 +3,8 @@
   "schematics": {
     "cap-angular-schematic-sfcore": {
       "description": "A blank schematic.",
-      "factory": "./cap-angular-schematic-sfcore/index#capAngularSchematicSfcore"
+      "factory": "./cap-angular-schematic-sfcore/index#capAngularSchematicSfcore",
+      "schema": "./cap-angular-schematic-sfcore/schema.json"
     }
   }
 }
