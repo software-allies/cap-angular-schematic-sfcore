@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "SchematicsMyComponent",
+    "title": "CAP AWS Schema",
+    "type": "object",
+    "properties": {
+      "apiEndPoint": {
+        "type": "string",
+        "description": "Path to the component",
+        "x-prompt": "Enter the endPoint that will be communicated?"
+      }
+    },
+    "required": []
+  }
