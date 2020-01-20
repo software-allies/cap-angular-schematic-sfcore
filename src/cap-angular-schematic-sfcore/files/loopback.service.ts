@@ -11,7 +11,7 @@ export class LoopbackService {
   url: string;
   limit: number;
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId) {
-    this.url = 'http://localhost:3000/api';
+    this.url = '<%=apiEndPoint%>';
     this.limit = 20;
   }
 
