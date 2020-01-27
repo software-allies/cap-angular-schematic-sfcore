@@ -1,6 +1,49 @@
-import { apply, FileEntry, forEach, MergeStrategy, mergeWith, move, Rule, SchematicContext, template, Tree, url } from '@angular-devkit/schematics';
-import { join, normalize } from 'path';
+import {
+  apply,
+  FileEntry,
+  forEach,
+  MergeStrategy,
+  mergeWith,
+  move,
+  Rule,
+  SchematicContext,
+  template,
+  Tree,
+  url,
+  noop,
+  chain,
+  SchematicsException
+} from '@angular-devkit/schematics';
+
+import {
+  join,
+  normalize 
+} from 'path';
+
 import { getWorkspace } from '@schematics/angular/utility/config';
+
+import {
+  NodeDependency,
+  NodeDependencyType,
+  addPackageJsonDependency,
+  WorkspaceProject,
+  getProjectFromWorkspace,
+  getAppModulePath,
+  addImportToModule,
+  // InsertChange
+} from 'schematics-utilities';
+
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
+
+export default function (options: any): Rule {
+  return chain([
+    options && options.skipModuleImport ? noop() : capAngularSchematicSfcore(options),
+    options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
+    options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
+    options && options.skipModuleImport ? noop() : addModuleToImports(options),
+  ]);
+}
 
 export function setupOptions(host: Tree, options: any): Tree {
   const workspace = getWorkspace(host);
@@ -9,7 +52,7 @@ export function setupOptions(host: Tree, options: any): Tree {
   }
   const project = workspace.projects[options.project];
 
-  options.path = join(normalize(project.root), 'src/app/modules/cap-heroku-connect');
+  options.path = join(normalize(project.root), 'src/app/modules/sales-force-core');
   return host;
 }
 
@@ -34,4 +77,58 @@ export function capAngularSchematicSfcore(_options: any): Rule {
 
     return rule(tree, _context);;
   };
+}
+
+export function addPackageJsonDependencies(): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    const dependencies: NodeDependency[] = [
+      { type: NodeDependencyType.Default, version: '^2.2.0', name: 'jwt-decode' },
+      { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
+      { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
+      { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' }
+    ];
+    dependencies.forEach(dependency => {
+      addPackageJsonDependency(host, dependency);
+      context.logger.log('info', `✅️ Added "${dependency.name}" into ${dependency.type}`);
+    });
+    return host;
+  };
+}
+
+export function installPackageJsonDependencies(): Rule {
+  return (host: Tree, context: SchematicContext) => {
+    context.addTask(new NodePackageInstallTask());
+    context.logger.log('info', `🔍 Installing packages...`);
+    return host;
+  };
+}
+
+function addModuleToImports (options: any): Rule {
+  return (host: Tree) => {
+    const workspace = getWorkspace(host);
+    let project : WorkspaceProject = getProjectFromWorkspace(workspace, options.project);
+    const moduleName = 'LoopbackModule';
+    const modulePath = getAppModulePath(host, getProjectMainFile(project));
+    auxAddModuleRoorToImports(host, modulePath, moduleName, './modules/sales-force-core/loopback.module');
+    return host;
+  };
+}
+
+export function auxAddModuleRoorToImports (host: Tree, modulePath: string, moduleName: string, src: string) {
+  const moduleSource = getSourceFile(host, modulePath);
+  if (!moduleSource) {
+    throw new SchematicsException(`Module not found: ${modulePath}`);
+  }
+
+  const changes = addImportToModule(moduleSource as any, modulePath, moduleName, src);
+  let recorder = host.beginUpdate(modulePath);
+  changes.forEach((change:any) => {
+    // if (change instanceof InsertChange) {
+      if (change.toAdd) {
+        recorder.insertLeft(change.pos, change.toAdd);
+      }
+    // }
+  });
+  host.commitUpdate(recorder);
+  return host
 }
