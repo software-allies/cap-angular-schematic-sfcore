@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class IndexComponent implements OnInit {
 
-  @ViewChild('PaginationComponentChild', { static: false })paginationComponent: PaginationComponent;
+  @ViewChild('PaginationComponentChild')paginationComponent: PaginationComponent;
   listings: any;
   currentPage: number;
   skipFilter: number;
