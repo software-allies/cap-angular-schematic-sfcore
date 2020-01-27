@@ -85,7 +85,8 @@ export function addPackageJsonDependencies(): Rule {
       { type: NodeDependencyType.Default, version: '^2.2.0', name: 'jwt-decode' },
       { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
-      { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' }
+      { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
+      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' }
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
