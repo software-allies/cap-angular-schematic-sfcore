@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { LoopbackService } from './loopback.service';
+import { SalesforceService } from './salesforce.service';
 
 @Injectable({providedIn: 'root'})
 export class AuthGuardService implements CanActivate {
 
   constructor(
     private router: Router,
-    private loopbackService: LoopbackService
+    private salesforceService: SalesforceService
   ) {}
 
   canActivate() {
-    if (this.loopbackService.isUserLoggedIn()) {
+    if (this.salesforceService.isUserLoggedIn()) {
       return true;
     }
     this.router.navigate(['/']);

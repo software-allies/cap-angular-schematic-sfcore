@@ -82,11 +82,13 @@ export function capAngularSchematicSfcore(_options: any): Rule {
 export function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^2.2.0', name: 'jwt-decode' },
+      { type: NodeDependencyType.Default, version: '^1.0.0', name: 'cap-sfcore'},
+      { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
       { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
-      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' }
+      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
+      { type: NodeDependencyType.Default, version: '^3.4.1', name: 'jquery'},
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
@@ -108,9 +110,9 @@ function addModuleToImports (options: any): Rule {
   return (host: Tree) => {
     const workspace = getWorkspace(host);
     let project : WorkspaceProject = getProjectFromWorkspace(workspace, options.project);
-    const moduleName = 'LoopbackModule';
+    const moduleName = 'SalesForceModule';
     const modulePath = getAppModulePath(host, getProjectMainFile(project));
-    auxAddModuleRoorToImports(host, modulePath, moduleName, './modules/sales-force-core/loopback.module');
+    auxAddModuleRoorToImports(host, modulePath, moduleName, './modules/sales-force-core/salesforce.module');
     return host;
   };
 }
