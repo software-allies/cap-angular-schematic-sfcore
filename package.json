@@ -1,16 +1,29 @@
 {
   "name": "cap-angular-schematic-sfcore",
   "version": "0.0.0",
-  "description": "A blank schematics",
+  "description": "CRUD of SalesForce objects",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "angular",
+    "sales force",
+    "CRUD",
+    "cap-sfcore",
+    "loopback"
   ],
-  "author": "",
+  "author": {
+    "email": "lenin_emmanuel@hotmail.com",
+    "name": "Lenin Emmanuel",
+    "url": "https://github.com/leninEmmanuel"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/software-allies/cap-angular-schematic-sfcore"
+  },
   "schematics": "./src/collection.json",
   "dependencies": {
     "@angular-devkit/core": "^8.3.19",
@@ -23,5 +36,8 @@
     "jasmine": "^3.0.0",
     "schematics-utilities": "^2.0.0",
     "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "schematics-utilities": "^2.0.0"
   }
 }
