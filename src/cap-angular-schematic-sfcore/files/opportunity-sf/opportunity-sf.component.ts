@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-opportunity-sf',
+  selector: 'app-opportunity',
   templateUrl: './opportunity-sf.component.html',
   styleUrls: ['./opportunity-sf.component.css']
 })

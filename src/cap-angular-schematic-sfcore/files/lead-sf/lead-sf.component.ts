@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-lead-sf',
+  selector: 'app-lead',
   templateUrl: './lead-sf.component.html',
   styleUrls: ['./lead-sf.component.css']
 })
