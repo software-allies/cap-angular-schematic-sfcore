@@ -82,7 +82,7 @@ export function capAngularSchematicSfcore(_options: any): Rule {
 export function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^1.0.0', name: 'cap-sfcore'},
+      { type: NodeDependencyType.Default, version: '^1.0.2', name: 'cap-sfcore'},
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
       { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },

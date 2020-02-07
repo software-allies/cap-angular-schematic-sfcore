@@ -7,7 +7,7 @@
       "apiEndPoint": {
         "type": "string",
         "description": "Path to the component",
-        "x-prompt": "Enter the endPoint that will be communicated?"
+        "x-prompt": "Enter the endPoint that will be communicated: "
       }
     },
     "required": []
