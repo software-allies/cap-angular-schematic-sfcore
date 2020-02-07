@@ -34,7 +34,7 @@ Previously, it must have a REST API created with `cap-generator` based Loopback,
 To run the schematic you have to execute the following command on your terminal.
 
 ```
-ng g cap-angular-schematic-auth-auth0:cap-angular-schematic-auth-auth0
+ng g cap-angular-schematic-sfcore:cap-angular-schematic-sfcore
 ```
 
 previously the schematic will ask an endPoint to be configured in the module.
