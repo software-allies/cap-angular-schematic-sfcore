@@ -5,11 +5,6 @@ Schematics are generators that transform an existing filesystem. They can create
 
 What distinguishes Schematics from other generators, such as Yeoman or Yarn Create, is that schematics are purely descriptive; no changes are applied to the actual filesystem until everything is ready to be committed. There is no side effect, by design, in Schematics.
 
-## **`Important!`**
-In order to use the scheme globally in any Angular project on your PC, you must do the installation globally.
-```
-npm i -g cap-angular-schematic-sfcore
-```
 
 ## **Previous requirements**
 
@@ -34,7 +29,7 @@ Previously, it must have a REST API created with `cap-generator` based Loopback,
 To run the schematic you have to execute the following command on your terminal.
 
 ```
-ng g cap-angular-schematic-sfcore:cap-angular-schematic-sfcore
+ng add cap-angular-schematic-sfcore
 ```
 
 previously the schematic will ask an endPoint to be configured in the module.
