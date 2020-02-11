@@ -5,6 +5,11 @@
       "description": "A blank schematic.",
       "factory": "./cap-angular-schematic-sfcore/index",
       "schema": "./cap-angular-schematic-sfcore/schema.json"
+    },
+    "ng-add": {
+      "description": "Add schematic",
+      "factory": "./ng-add/index",
+      "schema": "./cap-angular-schematic-sfcore/schema.json"
     }
   }
 }
