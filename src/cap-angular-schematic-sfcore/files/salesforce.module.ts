@@ -10,7 +10,7 @@ import { AccountSFComponent } from './account-sf/account-sf.component';
 import { ContactSFComponent } from './contact-sf/contact-sf.component';
 import { LeadSFComponent } from './lead-sf/lead-sf.component';
 import { OpportunitySFComponent } from './opportunity-sf/opportunity-sf.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { CapSalesForceCore } from 'cap-sfcore';
 
 @NgModule({
@@ -26,6 +26,7 @@ import { CapSalesForceCore } from 'cap-sfcore';
     SalesforceRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     CapSalesForceCore.forRoot({
       endPoint: '<%=apiEndPoint%>'
     })
