@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  title: string;
+
   constructor() {}
 
   ngOnInit() {}
+
+  setTitle(title: string) {
+    this.title = title;
+  }
 
 }
