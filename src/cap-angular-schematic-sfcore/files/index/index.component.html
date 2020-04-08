@@ -1,8 +1,8 @@
 <header class="title">
   <h1>
-    Leads
+    {{title}}
   </h1>
 </header>
 <section>
-    <app-index-sf></app-index-sf>
+    <app-index-sf (setTitle)="setTitle($event)"></app-index-sf>
 </section>
