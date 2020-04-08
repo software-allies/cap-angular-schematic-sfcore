@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-sfcore",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CRUD of SalesForce objects",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -16,10 +16,16 @@
     "loopback"
   ],
   "author": {
-    "email": "lenin_emmanuel@hotmail.com",
-    "name": "Lenin Emmanuel",
-    "url": "https://github.com/leninEmmanuel"
+    "name": "Software Allies",
+    "url": "https://softwareallies.com"
   },
+  "contributors": [
+    {
+      "email": "lenin_emmanuel@hotmail.com",
+      "name": "Lenin Emmanuel",
+      "url": "https://github.com/leninEmmanuel"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
