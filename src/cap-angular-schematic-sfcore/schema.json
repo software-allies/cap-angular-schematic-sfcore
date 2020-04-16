@@ -1,13 +1,26 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "id": "SchematicsMyComponent",
-    "title": "CAP AWS Schema",
+    "id": "cap-angular-schematic-sfcore",
+    "title": "cap-angular-schematic-sfcore",
     "type": "object",
     "properties": {
+      "credentials": {
+        "type": "boolean",
+        "description": "Show or hide credentials",
+        "x-prompt": "Make credentials reference to environment.ts?",
+        "$default": {
+          "$source": "argv",
+          "index": 0
+        }
+      },
       "apiEndPoint": {
         "type": "string",
         "description": "Path to the component",
-        "x-prompt": "Enter the endPoint that will be communicated: "
+        "x-prompt": "Enter the endPoint that will be communicated: ",
+        "$default": {
+          "$source": "argv",
+          "index": 1
+        }
       }
     },
     "required": []

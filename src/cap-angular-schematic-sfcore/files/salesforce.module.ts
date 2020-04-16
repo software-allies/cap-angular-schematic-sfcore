@@ -13,6 +13,8 @@ import { OpportunitySFComponent } from './opportunity-sf/opportunity-sf.componen
 import { HttpClientModule } from '@angular/common/http';
 import { CapSalesForceCore } from 'cap-sfcore';
 
+import { environment } from '../../../environments/environment';
+
 @NgModule({
   declarations: [
     IndexComponent,
@@ -28,7 +30,7 @@ import { CapSalesForceCore } from 'cap-sfcore';
     ReactiveFormsModule,
     HttpClientModule,
     CapSalesForceCore.forRoot({
-      endPoint: '<%=apiEndPoint%>'
+      endPoint: <%= credentials ? `environment.sfApiUrl` : `'${apiEndPoint}'` %>
     })
   ],
   providers: [SalesforceService]
