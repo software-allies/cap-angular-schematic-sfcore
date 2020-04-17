@@ -14,14 +14,11 @@ import {
   chain,
   SchematicsException
 } from '@angular-devkit/schematics';
-
 import {
   join,
   normalize 
 } from 'path';
-
 import { getWorkspace } from '@schematics/angular/utility/config';
-
 import {
   NodeDependency,
   NodeDependencyType,
@@ -32,9 +29,11 @@ import {
   addImportToModule,
   // InsertChange
 } from 'schematics-utilities';
-
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
+import { addEnvironmentVar } from './cap-utils';
+
+
 
 export default function (options: any): Rule {
   return chain([
@@ -42,7 +41,15 @@ export default function (options: any): Rule {
     options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
     options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
+    addToEnvironments(options),
   ]);
+}
+
+function addToEnvironments(options: any): Rule {
+    return (host: Tree) => {
+        // development environment
+        addEnvironmentVar(host, '', options.path || '/src', 'sfApiUrl', options.apiEndPoint);
+    }
 }
 
 export function setupOptions(host: Tree, options: any): Tree {
