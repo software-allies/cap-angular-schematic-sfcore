@@ -32,6 +32,7 @@ import {
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
 import { addEnvironmentVar } from './cap-utils';
+import { buildDefaultPath } from '@schematics/angular/utility/project';
 
 
 
@@ -46,9 +47,13 @@ export default function (options: any): Rule {
 }
 
 function addToEnvironments(options: any): Rule {
+    let srcPath = '/src';
+    if (options.project) {
+      srcPath = buildDefaultPath(options.project);
+    }
     return (host: Tree) => {
         // development environment
-        addEnvironmentVar(host, '', options.path || '/src', 'sfApiUrl', options.apiEndPoint);
+        addEnvironmentVar(host, '', srcPath, 'sfApiUrl', options.apiEndPoint);
     }
 }
 
@@ -58,7 +63,6 @@ export function setupOptions(host: Tree, options: any): Tree {
     options.project = Object.keys(workspace.projects)[0];
   }
   const project = workspace.projects[options.project];
-
   options.path = join(normalize(project.root), 'src/app/modules/sales-force-core');
   return host;
 }
@@ -91,7 +95,6 @@ export function addPackageJsonDependencies(): Rule {
     const dependencies: NodeDependency[] = [
       { type: NodeDependencyType.Default, version: '^1.0.5', name: 'cap-sfcore'},
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
-      { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
       { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
