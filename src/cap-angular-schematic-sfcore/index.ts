@@ -12,7 +12,8 @@ import {
   url,
   noop,
   chain,
-  SchematicsException
+  SchematicsException,
+  externalSchematic
 } from '@angular-devkit/schematics';
 import {
   join,
@@ -43,7 +44,12 @@ export default function (options: any): Rule {
     options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
     addToEnvironments(options),
+    addBootstrapSchematic(),
   ]);
+}
+
+function addBootstrapSchematic() {
+    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addToEnvironments(options: any): Rule {
@@ -97,7 +103,7 @@ export function addPackageJsonDependencies(): Rule {
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
-      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
+      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' }
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
