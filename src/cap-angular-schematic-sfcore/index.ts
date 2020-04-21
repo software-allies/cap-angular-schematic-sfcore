@@ -49,7 +49,7 @@ export default function (options: any): Rule {
 }
 
 function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap@latest', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+    return externalSchematic('cap-angular-schematic-bootstrap@0.0.10', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addToEnvironments(options: any): Rule {
