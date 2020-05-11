@@ -10,18 +10,14 @@ What distinguishes Schematics from other generators, such as Yeoman or Yarn Crea
 
 Previously, it must have a REST API created with `cap-generator` based Loopback, the product will soon be launched to the public as an easy and fast frontEnd and backEnd application generator using as a Heroku server.
 
-**cap-angular-schematic-sfcore** use bootstrap's classes. To be able to display the component in the right way. Schematic install bootstrap automatically to the most recent version and you have to configure the `angular.json` and write into `styles` [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/download/):
+**cap-angular-schematic-sfcore** use bootstrap's classes, You can use a CAP product to configure and install bootstrap to your project the installation is as follows.
 
 ```
-  "styles": [
-    "node_modules/bootstrap/dist/css/bootstrap.min.css",
-    "src/styles.css"
-  ],
-  "scripts": [
-    "node_modules/jquery/dist/jquery.min.js",
-    "node_modules/bootstrap/dist/js/bootstrap.min.js"
-  ]
+ng add cap-angular-schematic-bootstrap@latest 4.0.0 true
 ```
+![Alt text](https://github.com/software-allies/cap-angular-schematic-auth-auth0/blob/development/assets/images/cap-angular-schematic-bootstrap.png "cap-angular-schematic-bootstrap")
+
+you must have an authentication module, either from [Firebase](https://www.npmjs.com/package/cap-angular-schematic-auth-firebase) or [Auth0](https://www.npmjs.com/package/cap-angular-schematic-auth-auth0), we recommend using our CAP (Connect Application Platform) products for greater compatibility in your application.
 
 ## **Usage**
 `Note`: the schematic only works within an angular project.
@@ -34,7 +30,7 @@ ng add cap-angular-schematic-sfcore
 
 previously the schematic will ask an endPoint to be configured in the module.
 
-* Enter the endPoint that will be communicated: < https://your-domain.herokuapp.com/api >
+* Enter the endPoint that will be communicated: `https://your-domain.herokuapp.com/api`
  
  Next, the Schematic will create a component for each SalesForce objects and create a file structure like the following.
 
