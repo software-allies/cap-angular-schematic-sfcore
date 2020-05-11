@@ -27,6 +27,7 @@ To run the schematic you have to execute the following command on your terminal.
 ```
 ng add cap-angular-schematic-sfcore
 ```
+![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/schematic.png "cap-angular-schematic-sfcore")
 
 previously the schematic will ask an endPoint to be configured in the module.
 
@@ -46,6 +47,19 @@ modules
         |-- index/
         |-- routing.ts 
         |-- service.ts
-        |-- module.ts
-        
+        |-- module.ts     
 ```
+
+Now you can run your server from your angular project that we just modified and open the browser at `http://localhost:4200/` and navigate on the different routes of the components of this schematic.
+
+* /:param `/account`, `/contact`, `/lead` and `/opportunity`
+
+![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/list.png "List")
+
+* /:param/create `/account/create`
+
+![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/create.png "List")
+
+* /:param/:id `/account/0016g0000048gyAAAQ`
+
+![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/view.png "List")
