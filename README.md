@@ -15,7 +15,7 @@ Previously, it must have a REST API created with `cap-generator` based Loopback,
 ```
 ng add cap-angular-schematic-bootstrap@latest 4.0.0 true
 ```
-![Alt text](https://github.com/software-allies/cap-angular-schematic-auth-auth0/blob/development/assets/images/cap-angular-schematic-bootstrap.png "cap-angular-schematic-bootstrap")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-auth-auth0/development/assets/images/cap-angular-schematic-bootstrap.png "cap-angular-schematic-bootstrap")
 
 you must have an authentication module, either from [Firebase](https://www.npmjs.com/package/cap-angular-schematic-auth-firebase) or [Auth0](https://www.npmjs.com/package/cap-angular-schematic-auth-auth0), we recommend using our CAP (Connect Application Platform) products for greater compatibility in your application.
 
@@ -27,7 +27,7 @@ To run the schematic you have to execute the following command on your terminal.
 ```
 ng add cap-angular-schematic-sfcore
 ```
-![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/schematic.png "cap-angular-schematic-sfcore")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/schematic.png "cap-angular-schematic-sfcore")
 
 previously the schematic will ask an endPoint to be configured in the module.
 
@@ -54,12 +54,12 @@ Now you can run your server from your angular project that we just modified and 
 
 * /:param `/account`, `/contact`, `/lead` and `/opportunity`
 
-![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/list.png "List")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/list.png "List")
 
 * /:param/create `/account/create`
 
-![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/create.png "List")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/create.png "List")
 
 * /:param/:id `/account/0016g0000048gyAAAQ`
 
-![Alt text](https://github.com/software-allies/cap-angular-schematic-sfcore/blob/development/assets/images/view.png "List")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/view.png "List")
