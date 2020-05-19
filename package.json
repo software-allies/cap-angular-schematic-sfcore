@@ -1,6 +1,6 @@
 {
   "name": "cap-angular-schematic-sfcore",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "CRUD of SalesForce objects",
   "scripts": {
     "build": "tsc -p tsconfig.json",
