@@ -30,7 +30,7 @@ import { environment } from '../../../environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     CapSalesForceCore.forRoot({
-      endPoint: <%= credentials ? `environment.sfApiUrl` : `'${apiEndPoint}'` %>
+      endPoint: environment.sfApiUrl
     })
   ],
   providers: [SalesforceService]

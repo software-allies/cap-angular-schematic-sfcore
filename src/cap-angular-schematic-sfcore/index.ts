@@ -43,7 +43,7 @@ export default function (options: any): Rule {
     options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
     options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
-    addToEnvironments(options),
+    // addToEnvironments(options),
     addBootstrapSchematic(),
   ]);
 }
@@ -59,7 +59,7 @@ function addToEnvironments(options: any): Rule {
     }
     return (host: Tree) => {
         // development environment
-        addEnvironmentVar(host, '', srcPath, 'sfApiUrl', options.apiEndPoint);
+        addEnvironmentVar(host, '', srcPath, 'sfApiUrl', options.credentials ? options.apiEndPoint : '');
     }
 }
 

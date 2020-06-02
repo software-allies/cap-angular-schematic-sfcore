@@ -7,7 +7,7 @@
       "credentials": {
         "type": "boolean",
         "description": "Show or hide credentials",
-        "x-prompt": "Make credentials reference to environment.ts?",
+        "x-prompt": "Add credentials in environment.ts for local use?",
         "$default": {
           "$source": "argv",
           "index": 0
