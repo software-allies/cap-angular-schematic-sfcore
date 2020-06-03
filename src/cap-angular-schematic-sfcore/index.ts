@@ -43,24 +43,27 @@ export default function (options: any): Rule {
     options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
     options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
-    // addToEnvironments(options),
+    addToEnvironments(options),
     addBootstrapSchematic(),
   ]);
 }
 
 function addBootstrapSchematic() {
-    return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
+  return externalSchematic('cap-angular-schematic-bootstrap', 'ng-add', { version: "4.0.0", skipWebpackPlugin: true });
 }
 
 function addToEnvironments(options: any): Rule {
-    let srcPath = '/src';
-    if (options.project) {
-      srcPath = buildDefaultPath(options.project);
+  let srcPath = '/src';
+  if (options.project) {
+    srcPath = buildDefaultPath(options.project);
+  }
+  return (host: Tree) => {
+    // development environment
+    addEnvironmentVar(host, '', srcPath, 'sfApiUrl', options.credentials ? options.apiEndPoint : '');
+    if (options.credentials) {
+      addEnvironmentVar(host, 'prod', srcPath, 'sfApiUrl', options.credentials ? options.apiEndPoint : '');
     }
-    return (host: Tree) => {
-        // development environment
-        addEnvironmentVar(host, '', srcPath, 'sfApiUrl', options.credentials ? options.apiEndPoint : '');
-    }
+  }
 }
 
 export function setupOptions(host: Tree, options: any): Tree {
@@ -80,8 +83,8 @@ export function capAngularSchematicSfcore(_options: any): Rule {
     const movePath = normalize(_options.path + '/');
     const templateSource = apply(url('./files'), [
       template({
-          ..._options
-          }),
+        ..._options
+        }),
       move(movePath),
       forEach((fileEntry: FileEntry) => {
         if (tree.exists(fileEntry.path)) {

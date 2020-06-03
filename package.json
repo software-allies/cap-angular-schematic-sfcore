@@ -1,19 +1,19 @@
 {
   "name": "cap-angular-schematic-sfcore",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "CRUD of SalesForce objects",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"
   },
   "keywords": [
-    "schematics",
-    "angular",
     "sales force",
+    "schematics",
+    "loopback",
+    "angular",
     "CRUD",
-    "cap-generator",
-    "cap-sfcore",
-    "loopback"
+    "CAP",
+    "generator-cap"
   ],
   "author": {
     "name": "Software Allies",
