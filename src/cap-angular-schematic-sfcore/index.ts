@@ -106,7 +106,8 @@ export function addPackageJsonDependencies(): Rule {
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
-      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' }
+      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
+      { type: NodeDependencyType.Default, version: '^1.4.3', name: 'ngx-select-dropdown' }
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
