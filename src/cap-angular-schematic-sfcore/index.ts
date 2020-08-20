@@ -34,8 +34,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
 import { addEnvironmentVar } from './cap-utils';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
-import * as astUtils from 'cap-utilities'
-
 
 export default function (options: any): Rule {
   return chain([
@@ -45,7 +43,6 @@ export default function (options: any): Rule {
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
     addToEnvironments(options),
     addBootstrapSchematic(),
-    addExternalCSS()
   ]);
 }
 
@@ -77,24 +74,6 @@ export function setupOptions(host: Tree, options: any): Tree {
   return host;
 }
 
-export function addExternalCSS(): Rule {
-  return (host: Tree) => {
-    // Get the styles.scss file 
-    let styles = `src/styles.scss`;
-    if (host.read(styles) === null) {
-      styles = `src/styles.css`;
-    }
-
-    let newStyle = `
-    @import "~@ng-select/ng-select/themes/default.theme.css";
-    @import "~@ng-select/ng-select/themes/material.theme.css";
-    `
-    astUtils.appendToStartFile(host, styles, newStyle);
-
-    return host;
-  }
-}
-
 export function capAngularSchematicSfcore(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     setupOptions(tree, _options);
@@ -121,12 +100,11 @@ export function capAngularSchematicSfcore(_options: any): Rule {
 export function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^1.0.13', name: 'cap-sfcore' },
+      { type: NodeDependencyType.Default, version: '^1.0.40', name: 'cap-sfcore' },
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
       { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
-      { type: NodeDependencyType.Default, version: '^3.5.0', name: '@ng-select/ng-select' }
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
