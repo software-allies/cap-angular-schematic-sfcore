@@ -14,15 +14,20 @@ const routes: Routes = [
 
   {path: 'account/create', component: AccountSFComponent, canActivate: [AuthGuardService]},
   {path: 'account/:id', component: AccountSFComponent, canActivate: [AuthGuardService]},
+  {path: 'account/:id/:status',  component: AccountSFComponent, canActivate: [AuthGuardService]},
 
   {path: 'contact/create', component: ContactSFComponent, canActivate: [AuthGuardService]},
   {path: 'contact/:id', component: ContactSFComponent, canActivate: [AuthGuardService]},
+  {path: 'contact/:id/:status', component: ContactSFComponent, canActivate: [AuthGuardService]},
 
   {path: 'lead/create', component: LeadSFComponent, canActivate: [AuthGuardService]},
   {path: 'lead/:id', component: LeadSFComponent, canActivate: [AuthGuardService]},
+  {path: 'lead/:id/:status', component: LeadSFComponent, canActivate: [AuthGuardService]},
 
   {path: 'opportunity/create', component: OpportunitySFComponent, canActivate: [AuthGuardService]},
-  {path: 'opportunity/:id', component: OpportunitySFComponent, canActivate: [AuthGuardService]}
+  {path: 'opportunity/:id', component: OpportunitySFComponent, canActivate: [AuthGuardService]},
+  {path: 'opportunity/:id/:status', component: OpportunitySFComponent, canActivate: [AuthGuardService]}
+
 ];
 
 @NgModule({

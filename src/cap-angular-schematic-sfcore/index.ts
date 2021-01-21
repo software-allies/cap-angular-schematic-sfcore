@@ -17,7 +17,7 @@ import {
 } from '@angular-devkit/schematics';
 import {
   join,
-  normalize 
+  normalize
 } from 'path';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import {
@@ -34,8 +34,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
 import { addEnvironmentVar } from './cap-utils';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
-
-
 
 export default function (options: any): Rule {
   return chain([
@@ -84,7 +82,7 @@ export function capAngularSchematicSfcore(_options: any): Rule {
     const templateSource = apply(url('./files'), [
       template({
         ..._options
-        }),
+      }),
       move(movePath),
       forEach((fileEntry: FileEntry) => {
         if (tree.exists(fileEntry.path)) {
@@ -102,11 +100,11 @@ export function capAngularSchematicSfcore(_options: any): Rule {
 export function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^1.0.13', name: 'cap-sfcore'},
-      { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt'},
+      { type: NodeDependencyType.Default, version: '^1.0.51', name: 'cap-sfcore' },
+      { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
-      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' }
+      { type: NodeDependencyType.Default, version: '^3.3.3', name: 'uuid' },
     ];
     dependencies.forEach(dependency => {
       addPackageJsonDependency(host, dependency);
@@ -124,10 +122,10 @@ export function installPackageJsonDependencies(): Rule {
   };
 }
 
-function addModuleToImports (options: any): Rule {
+function addModuleToImports(options: any): Rule {
   return (host: Tree) => {
     const workspace = getWorkspace(host);
-    let project : WorkspaceProject = getProjectFromWorkspace(workspace, options.project);
+    let project: WorkspaceProject = getProjectFromWorkspace(workspace, options.project);
     const moduleName = 'SalesForceModule';
     const modulePath = getAppModulePath(host, getProjectMainFile(project));
     auxAddModuleRoorToImports(host, modulePath, moduleName, './modules/sales-force-core/salesforce.module');
@@ -135,7 +133,7 @@ function addModuleToImports (options: any): Rule {
   };
 }
 
-export function auxAddModuleRoorToImports (host: Tree, modulePath: string, moduleName: string, src: string) {
+export function auxAddModuleRoorToImports(host: Tree, modulePath: string, moduleName: string, src: string) {
   const moduleSource = getSourceFile(host, modulePath);
   if (!moduleSource) {
     throw new SchematicsException(`Module not found: ${modulePath}`);
@@ -143,11 +141,11 @@ export function auxAddModuleRoorToImports (host: Tree, modulePath: string, modul
 
   const changes = addImportToModule(moduleSource as any, modulePath, moduleName, src);
   let recorder = host.beginUpdate(modulePath);
-  changes.forEach((change:any) => {
+  changes.forEach((change: any) => {
     // if (change instanceof InsertChange) {
-      if (change.toAdd) {
-        recorder.insertLeft(change.pos, change.toAdd);
-      }
+    if (change.toAdd) {
+      recorder.insertLeft(change.pos, change.toAdd);
+    }
     // }
   });
   host.commitUpdate(recorder);
