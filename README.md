@@ -52,14 +52,29 @@ modules
 
 Now you can run your server from your angular project that we just modified and open the browser at `http://localhost:4200/` and navigate on the different routes of the components of this schematic.
 
-* /:param `/account`, `/contact`, `/lead` and `/opportunity`
+* `/:object`
+* `/account`
+* `/contact`
+* `/lead`
+* `/opportunity`
 
-![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/list.png "List")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/CRUD.png "List")
 
-* /:param/create `/account/create`
+* `/:object/:uuid`
+* `/lead/0016g0000048gyAAAQ`
 
-![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/create.png "List")
+![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/DETAIL.png "List")
 
-* /:param/:id `/account/0016g0000048gyAAAQ`
+---
+## Styles
 
-![Alt text](https://raw.githubusercontent.com/software-allies/cap-angular-schematic-sfcore/development/assets/images/view.png "List")
+Here we leave some styles already predefined for your application and this package to look cool. You only need to add [these files](https://github.com/software-allies/cap-angular-schematic-responsive/tree/development/src/cap-angular-schematic-responsive/files/src/assets/scss) in your application `/assets/scss`  and import the `main.scss` file in your `src/styles.scss` file in the following way:
+```
+@import '. /assets/scss/main.scss';
+```
+
+You can also do it automatically by calling a schematic for Angular as follows: 
+
+```
+ng add cap-angular-schematic-responsive <App title> false false false
+```
