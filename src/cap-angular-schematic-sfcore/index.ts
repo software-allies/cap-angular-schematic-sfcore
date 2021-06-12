@@ -34,16 +34,27 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getProjectMainFile, getSourceFile } from 'schematics-utilities/dist/cdk';
 import { addEnvironmentVar } from './cap-utils';
 import { buildDefaultPath } from '@schematics/angular/utility/project';
+import { appendToStartFile } from './cap-utils';
 
 export default function (options: any): Rule {
-  return chain([
-    options && options.skipModuleImport ? noop() : capAngularSchematicSfcore(options),
-    options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
-    options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
-    options && options.skipModuleImport ? noop() : addModuleToImports(options),
-    addToEnvironments(options),
-    addBootstrapSchematic(),
-  ]);
+  return (host: Tree) => {
+    let styles = `src/styles.scss`;
+    if (host.read(styles) === null) {
+      styles = `src/styles.css`;
+    }
+    const files: any = {
+      styles: styles,
+    }
+    return chain([
+      options && options.skipModuleImport ? noop() : capAngularSchematicSfcore(options),
+      options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
+      options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
+      options && options.skipModuleImport ? noop() : addModuleToImports(options),
+      addToEnvironments(options),
+      addBootstrapSchematic(),
+      appendToStylesFile(files.styles),
+    ]);
+  }
 }
 
 function addBootstrapSchematic() {
@@ -97,10 +108,39 @@ export function capAngularSchematicSfcore(_options: any): Rule {
   };
 }
 
+function appendToStylesFile(path: string): Rule {
+  return (host: Tree) => {
+    const content = `
+.ngx-pagination{
+  li{
+    background-color: #dee2e6;
+    padding: .3rem .5rem;
+    margin: 0rem .5rem;
+    border-radius: 1rem!important;
+    font-size: 1.5rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s;
+    &:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba(#080808, $alpha: 0.2);
+    }
+  }
+  .current{
+    padding: .5rem 1rem!important;
+    background-color: rgb(33, 153, 232);
+  }
+}
+    `;
+    appendToStartFile(host, path, content);
+    return host;
+  };
+}
+
 export function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^1.0.51', name: 'cap-sfcore' },
+      { type: NodeDependencyType.Default, version: '^1.1.9', name: 'cap-sfcore' },
       { type: NodeDependencyType.Default, version: '^3.0.1', name: '@auth0/angular-jwt' },
       { type: NodeDependencyType.Default, version: '^9.5.3', name: 'sweetalert2' },
       { type: NodeDependencyType.Default, version: '^5.0.0', name: 'ngx-pagination' },
