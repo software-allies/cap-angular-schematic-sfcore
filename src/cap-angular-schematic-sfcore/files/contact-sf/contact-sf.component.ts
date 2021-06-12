@@ -2,13 +2,26 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contact-sf.component.html',
-  styleUrls: ['./contact-sf.component.scss']
+  template: `
+  <section>
+      <app-contact-sf></app-contact-sf>
+  </section>
+  `,
+  styles: [`
+    section {
+      min-height: 100vh;
+      overflow: hidden;
+      width: 100%;
+      background-color: white;
+      transition: margin-left 4s ease-in-out 1s;
+      padding: 20px 20px;
+    }
+  `]
 })
 export class ContactSFComponent implements OnInit {
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
