@@ -12,7 +12,7 @@ import { LeadSFComponent } from './lead-sf/lead-sf.component';
 import { OpportunitySFComponent } from './opportunity-sf/opportunity-sf.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CapSalesForceCore } from 'cap-sfcore';
-
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../environments/environment';
 
 @NgModule({
@@ -33,6 +33,9 @@ import { environment } from '../../../environments/environment';
       endPoint: environment.sfApiUrl
     })
   ],
-  providers: [SalesforceService]
+  providers: [
+    SalesforceService,
+    CookieService
+  ]
 })
 export class SalesForceModule {}
