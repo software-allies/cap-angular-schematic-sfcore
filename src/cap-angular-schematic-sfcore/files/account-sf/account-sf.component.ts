@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
     `,
   styles: [`
     section {
-      min-height: 100vh;
+      min-height: 50vh;
       overflow: hidden;
       width: 100%;
       background-color: white;
